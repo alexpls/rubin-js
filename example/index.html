@@ -1,0 +1,39 @@
+<!doctype>
+<html>
+  <head>
+    <title>Rubin test</title>
+  </head>
+
+  <body>
+    <h1>Rubin test</h1>
+    <script src="./rubin-bundle.js"></script>
+
+    <script>
+      var rubin = new Rubin();
+      rubin.preloadSounds([
+        {
+          key: 'A-strum',
+          urls: [
+            {
+              url: '/sounds/acoustic-guitar-A-strum.mp3',
+              type: 'mp3'
+            }
+          ]
+        },
+        {
+          key: 'Amin-strum',
+          urls: [
+            {
+              url: '/sounds/acoustic-guitar-Amin-strum.mp3',
+              type: 'mp3'
+            }
+          ]
+        }
+      ]);
+
+      rubin.getSound('A-strum').then(function(sound) {
+        console.log(sound);
+      });
+    </script>
+  </body>
+</html>
