@@ -38,7 +38,7 @@ class Rubin {
   }
 }
 
-if (window) {
+if (typeof window !== 'undefined') {
   window.Rubin = Rubin
 }
 
