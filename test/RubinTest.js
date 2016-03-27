@@ -1,5 +1,4 @@
 import Rubin from '../rubin'
-import SoundStates from '../lib/SoundStates'
 
 const soundConfig = { key: 'woof', urls: [{ type: 'mp3', url: 'woof.mp3' }] };
 
@@ -34,18 +33,18 @@ describe('Rubin', () => {
     })
 
     it('returns a promise which resolves when the sound is in the requested state', function(done) {
-      const promise = this.rubin.getSound(soundConfig.key, SoundStates.initialized);
+      const promise = this.rubin.getSound(soundConfig.key, 'initialized');
       expect(promise).to.be.a(Promise);
       promise.then((sound) => {
         expect(sound.key).to.be(soundConfig.key);
-        expect(sound.state).to.be(SoundStates.initialized);
+        expect(sound.state.is('initialized')).to.be(true);
         done();
       })
     })
 
     it('defaults to a sound\'s ready state if no state passed in', function(done) {
       this.rubin.getSound(soundConfig.key).then((sound) => {
-        expect(sound.state).to.be(SoundStates.ready);
+        expect(sound.state.is('ready')).to.be(true);
         done();
       })
     })

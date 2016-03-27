@@ -1,5 +1,4 @@
 import Sound from './lib/Sound'
-import SoundStates from './lib/SoundStates'
 
 class Rubin {
   constructor() {
@@ -19,7 +18,7 @@ class Rubin {
   }
 
   getSound(key, state) {
-    state = state || SoundStates.ready
+    state = state || 'ready'
 
     return new Promise((resolve, reject) => {
       const s = this.sounds[key]
