@@ -33,6 +33,9 @@
 
       rubin.getSound('A-strum').then(function(sound) {
         console.log(sound);
+        sound.play().then(function() {
+          sound.play()
+        })
       });
     </script>
   </body>

@@ -20,6 +20,7 @@
     "browserify": "^13.0.0",
     "expect.js": "^0.3.1",
     "npm-watch": "^0.1.1",
+    "sinon": "^1.17.3",
     "watchify": "^3.7.0"
   },
   "dependencies": {
