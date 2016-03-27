@@ -15,6 +15,11 @@ describe('Rubin', () => {
       expect(Object.keys(r.sounds).length).to.be(0);
       expect(r.loadQueue.length).to.be(0);
     })
+
+    it('creates an AudioContext', () => {
+      const r = new Rubin()
+      expect(r.context).to.be.a(window.AudioContext)
+    })
   })
 
   describe('addSound', () => {
@@ -29,7 +34,7 @@ describe('Rubin', () => {
   describe('getSound', () => {
     beforeEach(function() {
       this.rubin = new Rubin();
-      this.rubin.addSound(soundConfig);
+      this.sound = this.rubin.addSound(soundConfig);
     })
 
     it('returns a promise which resolves when the sound is in the requested state', function(done) {
@@ -43,6 +48,9 @@ describe('Rubin', () => {
     })
 
     it('defaults to a sound\'s ready state if no state passed in', function(done) {
+      this.sound.state.load()
+      this.sound.state.loaded()
+
       this.rubin.getSound(soundConfig.key).then((sound) => {
         expect(sound.state.is('ready')).to.be(true);
         done();

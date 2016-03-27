@@ -1,7 +1,5 @@
 import Sound from './lib/Sound'
 
-window.AudioContext = window.AudioContext || window.webkitAudioContext
-
 class Rubin {
   constructor() {
     this.sounds = {}
@@ -78,6 +76,9 @@ class Rubin {
 
 if (typeof window !== 'undefined') {
   window.Rubin = Rubin
+  window.AudioContext = window.AudioContext || window.webkitAudioContext
+} else {
+  global.window = {}
 }
 
 module.exports = Rubin
