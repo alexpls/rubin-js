@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "",
-  "main": "rubin.js",
+  "main": "dist/rubin.js",
   "watch": {
     "test": "{lib,test}/*.js"
   },
