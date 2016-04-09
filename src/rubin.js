@@ -46,7 +46,7 @@ class Rubin {
     const asyncLoadCount = 2
 
     var startLoadingSound = (sound) => {
-      sound.load().then(function() {
+      sound.load().then(() => {
         // remove the sound from the load queue once it's ready to be played
         const soundIdx = this.loadQueue.indexOf(sound)
         this.loadQueue.splice(soundIdx, 1)
