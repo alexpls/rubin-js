@@ -1,13 +1,15 @@
+import { EventEmitter } from 'events'
 import Sound from './Sound'
 
-class Rubin {
+class Rubin extends EventEmitter {
   constructor() {
+    super()
     this.sounds = {}
     this.loadQueue = []
     this.context = new window.AudioContext()
   }
 
-  preloadSounds(soundConfigs) {
+  preloadSounds(soundConfigs, cb = function() {}) {
     soundConfigs.forEach((soundConfig) => {
       if (!this.sounds[soundConfig.key]) {
         const newSound = this.addSound(soundConfig)
@@ -17,7 +19,7 @@ class Rubin {
       }
     })
 
-    this.startLoadingFromQueue()
+    this.startLoadingFromQueue(cb)
   }
 
   getSound(key, state) {
@@ -39,20 +41,26 @@ class Rubin {
     return s
   }
 
-  startLoadingFromQueue() {
+  startLoadingFromQueue(cb = function() {}) {
     if (this.loadQueue.length === 0) { return; }
 
     // how many sounds to load at one time?
     const asyncLoadCount = 2
+    let loadedSounds = []
 
     var startLoadingSound = (sound) => {
       sound.load().then(() => {
+        loadedSounds.push(sound)
+        this.emit('preloadedSound', sound)
+
         // remove the sound from the load queue once it's ready to be played
         const soundIdx = this.loadQueue.indexOf(sound)
         this.loadQueue.splice(soundIdx, 1)
 
         // checks if we've loaded all the sounds already
         if (this.loadQueue.length === 0) {
+          this.emit('preloadedAllSounds')
+          cb(null, loadedSounds)
           return
         }
 
@@ -69,7 +77,7 @@ class Rubin {
 
     // kick off the load
     this.loadQueue.slice(0, asyncLoadCount).forEach((sound) => {
-      startLoadingSound(sound)
+      startLoadingSound.call(this, sound)
     })
   }
 }
