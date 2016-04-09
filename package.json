@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "description": "",
-  "main": "dist/rubin.js",
+  "main": "lib/rubin.js",
   "watch": {
-    "test": "{lib,test}/*.js"
+    "test": "{src,test}/*.js"
   },
   "scripts": {
+    "compile": "babel -d lib/ src/",
     "test": "mocha --require babel-core/register",
     "watch": "npm-watch"
   },

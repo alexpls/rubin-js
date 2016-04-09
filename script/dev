@@ -1,2 +1,2 @@
 #!/bin/bash
-watchify rubin.js -o example/rubin-bundle.js -t [ babelify --presets [ es2015 ] ]
+watchify lib/rubin.js -o example/rubin-bundle.js -t [ babelify --presets [ es2015 ] ]
