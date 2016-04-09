@@ -1,4 +1,4 @@
-import Sound from './lib/Sound'
+import Sound from './Sound'
 
 class Rubin {
   constructor() {

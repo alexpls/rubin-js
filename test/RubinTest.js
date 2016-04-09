@@ -1,4 +1,4 @@
-import Rubin from '../rubin'
+import Rubin from '../src/rubin'
 
 const soundConfig = { key: 'woof', urls: [{ type: 'mp3', url: 'woof.mp3' }] };
 

@@ -1,4 +1,4 @@
-import SoundURL from '../lib/SoundURL';
+import SoundURL from '../src/SoundURL';
 
 describe('SoundURL', function() {
   describe('instantiation', () => {

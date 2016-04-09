@@ -1,4 +1,4 @@
-import Sound from '../lib/Sound'
+import Sound from '../src/Sound'
 
 describe('Sound', function() {
   before(function() {
